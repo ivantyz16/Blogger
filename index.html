@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ivan Kurniawan | Creator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --k: #000;
+      --w: #fff;
+      --g1: #f2f2f2;
+      --g2: #9a9a9a;
+      --g3: #2a2a2a
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 56px
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+      background: var(--w);
+      color: var(--k)
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 0;
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--k);
+      outline-offset: 2px
+    }
+
+    img {
+      display: block;
+      filter: grayscale(1)
+    }
+
+    .h {
+      font-family: Anton;
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 1
+    }
+
+    /* nav */
+    .vnav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 72px;
+      background: var(--w);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 72px);
+      z-index: 10
+    }
+
+    .vnav .brand {
+      writing-mode: horizontal-tb;
+      font-family: Anton;
+      font-size: 2rem;
+      letter-spacing: .06em
+    }
+
+    .vnav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(16px, 3vw, 38px)
+    }
+
+    .vnav a {
+      writing-mode: horizontal-tb;
+      text-decoration: none;
+      color: var(--k);
+      font-weight: 600;
+      font-size: .78rem;
+      padding: 10px 0;
+      border-bottom: 2px solid transparent
+    }
+
+    .vnav a:hover,
+    .vnav a.act {
+      border-bottom-color: var(--k)
+    }
+
+    .nav-note {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .08em
+    }
+
+    /* hero */
+    #home {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, .8fr);
+      grid-template-rows: minmax(540px, calc(100vh - 72px)) auto;
+      min-height: 100vh;
+      padding-top: 72px
+    }
+
+    .side {
+      grid-column: 1/-1;
+      grid-row: 2;
+      background: #090909;
+      color: var(--w);
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      align-items: stretch;
+      padding: 0 clamp(20px, 5vw, 72px)
+    }
+
+    .side .t {
+      min-width: 0;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px
+    }
+
+    .side .t+.t {
+      background: #1d1d1d
+    }
+
+    .side h3 {
+      font-family: Anton;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: .03em
+    }
+
+    .side p {
+      font-size: .78rem;
+      line-height: 1.6
+    }
+
+    .side .pic {
+      height: 116px;
+      object-fit: cover;
+      width: 92px;
+      flex: 0 0 92px
+    }
+
+    .next {
+      align-self: center;
+      background: var(--w);
+      color: var(--k);
+      font-family: Anton;
+      letter-spacing: .08em;
+      padding: 20px 24px;
+      font-size: 1.05rem
+    }
+
+    .next:hover {
+      background: var(--k);
+      color: var(--w)
+    }
+
+    .stage {
+      position: relative;
+      grid-column: 1;
+      grid-row: 1;
+      min-height: calc(100vh - 72px);
+      overflow: hidden;
+      background: #bcbcbc
+    }
+
+    .stage .hero {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 34%;
+      opacity: 1;
+      transition: opacity .35s ease
+    }
+
+    .stage .hero.changing {
+      opacity: 0
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0, 0, 0, .48), transparent 38%);
+      pointer-events: none
+    }
+
+    .feature {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: clamp(32px, 6vw, 88px);
+      background: #f4f4f2
+    }
+
+    .feature .eyebrow {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #666
+    }
+
+    .feature h1 {
+      font-family: Anton, sans-serif;
+      font-weight: 400;
+      font-size: clamp(4rem, 8vw, 8rem);
+      line-height: .84;
+      text-transform: uppercase;
+      margin: 22px 0 14px
+    }
+
+    .feature .role {
+      font-family: Anton, sans-serif;
+      font-size: 1.15rem;
+      text-transform: uppercase
+    }
+
+    .feature .desc {
+      max-width: 380px;
+      margin-top: 14px;
+      color: #4b4b4b;
+      font-size: .9rem;
+      line-height: 1.8
+    }
+
+    .feature .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 22px;
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #565656
+    }
+
+    .count {
+      position: absolute;
+      top: 30px;
+      left: 34px;
+      font-family: Anton;
+      font-size: 2.1rem;
+      color: var(--w);
+      line-height: 1;
+      z-index: 2
+    }
+
+    .count small {
+      font-size: 1.4rem
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--k);
+      color: var(--w);
+      padding: 12px 26px;
+      font-family: Anton;
+      letter-spacing: .08em;
+      text-decoration: none;
+      border: 2px solid var(--k)
+    }
+
+    .btn.line {
+      background: var(--w);
+      color: var(--k)
+    }
+
+    .btn:hover {
+      background: var(--g3);
+      color: var(--w)
+    }
+
+    /* section */
+    section.s {
+      padding: 72px clamp(20px, 5vw, 64px);
+      border-top: 2px solid var(--k)
+    }
+
+    .s .h {
+      font-size: clamp(2.6rem, 7vw, 5rem)
+    }
+
+    .sub {
+      margin: 8px 0 28px;
+      color: #555
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px
+    }
+
+    .box {
+      position: relative;
+      border: 2px solid var(--k);
+      min-height: 280px;
+      color: var(--w);
+      overflow: hidden
+    }
+
+    .box>img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .box .in {
+      position: relative;
+      background: rgba(0, 0, 0, .62);
+      padding: 24px;
+      height: 100%;
+      min-height: 280px
+    }
+
+    .box h2 {
+      font-family: Anton;
+      font-weight: 400;
+      font-size: 1.8rem;
+      margin-bottom: 12px
+    }
+
+    .msg {
+      background: var(--w);
+      color: var(--k);
+      border-left: 6px solid var(--k);
+      padding: 12px 14px;
+      font-size: .88rem;
+      line-height: 1.6
+    }
+
+    .msg code {
+      background: var(--g1);
+      padding: 1px 5px
+    }
+
+    .times {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 8px;
+      margin-top: 12px
+    }
+
+    .times div {
+      background: var(--w);
+      color: var(--k);
+      padding: 10px;
+      text-align: center;
+      font-size: .8rem
+    }
+
+    .times b {
+      display: block;
+      font-family: Anton;
+      font-weight: 400;
+      font-size: 1.4rem
+    }
+
+    .next-time {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: var(--w);
+      color: var(--k);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px
+    }
+
+    .next-time span {
+      font-size: .8rem
+    }
+
+    .next-time b {
+      font-family: Anton;
+      font-size: 1.65rem;
+      font-weight: 400;
+      white-space: nowrap
+    }
+
+    .big {
+      font-family: Anton;
+      font-size: 4rem;
+      line-height: 1
+    }
+
+    .materi-tools {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 14px;
+      margin: 24px 0 14px;
+      align-items: center
+    }
+
+    .materi-tools input {
+      width: 100%;
+      min-width: 0;
+      padding: 14px 16px;
+      border: 1px solid #bcbcbc;
+      border-bottom: 3px solid var(--k);
+      font: inherit;
+      background: var(--w);
+      color: var(--k)
+    }
+
+    .materi-tools input:focus {
+      outline: 2px solid var(--k);
+      outline-offset: 2px
+    }
+
+    .kelas-filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap
+    }
+
+    .kelas-filters button {
+      min-height: 44px;
+      padding: 9px 14px;
+      background: transparent;
+      border: 1px solid #aaa;
+      font: 600 .78rem Poppins, sans-serif;
+      cursor: pointer;
+      transition: background .18s, color .18s, border-color .18s
+    }
+
+    .kelas-filters button[aria-pressed="true"],
+    .kelas-filters button:hover {
+      background: var(--k);
+      color: var(--w);
+      border-color: var(--k)
+    }
+
+    .materi-count {
+      margin: 0 0 16px;
+      color: #656565;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+      gap: 12px
+    }
+
+    .materi-card {
+      position: relative;
+      width: 100%;
+      min-height: 174px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 17px 18px 14px;
+      border: 1px solid #d2d2d2;
+      border-top: 3px solid var(--k);
+      background: var(--w);
+      color: var(--k);
+      text-align: left;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease
+    }
+
+    .materi-card:hover {
+      transform: translateY(-3px);
+      background: var(--k);
+      color: var(--w);
+      border-color: var(--k)
+    }
+
+    .materi-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px
+    }
+
+    .materi-card .grade {
+      padding: 5px 7px;
+      background: #ededed;
+      font-size: .64rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      white-space: nowrap
+    }
+
+    .materi-card:hover .grade {
+      background: #d7f36a;
+      color: var(--k)
+    }
+
+    .materi-subject {
+      font-size: .66rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-align: right;
+      color: #666
+    }
+
+    .materi-card:hover .materi-subject {
+      color: #d7f36a
+    }
+
+    .materi-card h3 {
+      font-family: Anton;
+      font-weight: 400;
+      font-size: 1.35rem;
+      line-height: 1.16
+    }
+
+    .materi-card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+      font-size: .64rem;
+      font-weight: 600;
+      letter-spacing: .06em
+    }
+
+    .materi-card:hover .materi-card-bottom {
+      border-color: #555
+    }
+
+    .materi-card .arrow {
+      display: grid;
+      place-items: center;
+      width: 25px;
+      height: 25px;
+      border: 1px solid #aaa;
+      font-size: 1rem;
+      line-height: 1
+    }
+
+    .materi-card:hover .arrow {
+      background: #d7f36a;
+      color: var(--k);
+      border-color: #d7f36a
+    }
+
+    .materi-empty {
+      grid-column: 1/-1;
+      padding: 26px 18px;
+      border: 1px solid #d2d2d2;
+      background: var(--w);
+      color: #555
+    }
+
+    .materi-modal-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: var(--k);
+      color: var(--w);
+      font-weight: 600;
+      text-decoration: none
+    }
+
+    .materi-modal-link:hover {
+      background: var(--g3)
+    }
+
+    /* hobi */
+    .hobi {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0;
+      border: 2px solid var(--k)
+    }
+
+    .hobi-item {
+      position: relative;
+      min-height: 340px;
+      overflow: hidden;
+      background: var(--k);
+      color: var(--w);
+      text-align: left;
+      border-right: 2px solid var(--k)
+    }
+
+    .hobi-item:last-child {
+      border-right: 0
+    }
+
+    .hobi-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .75;
+      transition: transform .35s ease, opacity .35s ease
+    }
+
+    .hobi-item:hover img {
+      transform: scale(1.06);
+      opacity: .45
+    }
+
+    .hobi-item .no {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      font-family: Anton;
+      font-size: 2.4rem;
+      line-height: 1;
+      z-index: 2
+    }
+
+    .hobi-item .cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 48px 20px 20px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .85))
+    }
+
+    .hobi-item h3 {
+      font-family: Anton;
+      font-weight: 400;
+      font-size: 1.7rem;
+      letter-spacing: .04em;
+      text-transform: uppercase
+    }
+
+    .hobi-item p {
+      font-size: .8rem;
+      line-height: 1.6;
+      margin-top: 6px;
+      max-width: 30ch
+    }
+
+    .hobi-item .more {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      border-bottom: 2px solid var(--w)
+    }
+
+    dialog {
+      position: fixed;
+      margin: auto;
+      border: 3px solid var(--k);
+      max-width: 640px;
+      width: 92%;
+      padding: 0;
+      background: var(--w)
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, .7)
+    }
+
+    dialog .mh {
+      width: 100%;
+      height: 240px;
+      object-fit: cover
+    }
+
+    .mb {
+      padding: 22px
+    }
+
+    .mb h2 {
+      font-family: Anton;
+      font-weight: 400;
+      font-size: 2rem
+    }
+
+    .mb p {
+      line-height: 1.7;
+      margin: 12px 0
+    }
+
+    .x {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: var(--w);
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 2px solid var(--k);
+      z-index: 2
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 0;
+      display: block
+    }
+
+    .video-preview {
+      position: relative;
+      display: block;
+      width: min(100%, 1080px);
+      margin-inline: auto;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #111;
+      color: #fff
+    }
+
+    .video-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .25s ease
+    }
+
+    .video-preview:hover img {
+      transform: scale(1.025)
+    }
+
+    .video-play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 64px;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .55)
+    }
+
+    .video-play::after {
+      content: "";
+      position: absolute;
+      left: 26px;
+      top: 18px;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      border-left: 17px solid #fff
+    }
+
+    .video-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 32px 18px 14px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .75));
+      font-family: Anton, sans-serif;
+      letter-spacing: .08em
+    }
+
+    footer {
+      background: var(--k);
+      color: var(--w);
+      padding: 26px clamp(20px, 5vw, 64px);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: .85rem
+    }
+
+    footer b {
+      font-family: Anton;
+      font-weight: 400;
+      letter-spacing: .06em
+    }
+
+    @media(max-width:800px) {
+      .vnav {
+        position: absolute;
+        height: 62px;
+        padding: 0 16px
+      }
+
+      .vnav .brand {
+        font-size: 1.35rem
+      }
+
+      .vnav ul {
+        gap: 12px
+      }
+
+      .vnav a {
+        font-size: .68rem
+      }
+
+      .nav-note {
+        display: none
+      }
+
+      .materi-tools {
+        grid-template-columns: 1fr
+      }
+
+      .kelas-filters {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+
+      .kelas-filters button {
+        padding-inline: 6px
+      }
+
+      html {
+        scroll-padding-top: 62px
+      }
+
+      #home {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(360px, 58vh) auto auto;
+        min-height: auto;
+        padding-top: 62px
+      }
+
+      .stage {
+        grid-column: 1;
+        grid-row: 1;
+        min-height: 58vh
+      }
+
+      .stage .hero {
+        object-position: center 28%
+      }
+
+      .feature {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 34px 24px 40px
+      }
+
+      .feature h1 {
+        font-size: clamp(4rem, 16vw, 6.5rem);
+        margin-top: 18px
+      }
+
+      .side {
+        grid-column: 1;
+        grid-row: 3;
+        grid-template-columns: 1fr;
+        padding: 0
+      }
+
+      .side .t {
+        min-height: 140px;
+        padding: 20px 22px
+      }
+
+      .side .t+.t {
+        background: #171717
+      }
+
+      .side .pic {
+        height: 104px;
+        width: 82px;
+        flex-basis: 82px
+      }
+
+      .next {
+        justify-self: stretch;
+        margin: 18px 22px 22px
+      }
+
+      .hobi-item {
+        border-right: 0;
+        border-bottom: 2px solid var(--k);
+        min-height: 280px
+      }
+
+      .hobi-item:last-child {
+        border-bottom: 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="vnav">
+    <div class="brand">STUDENT</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#api">API</a></li>
+      <li><a href="#materi">Materi</a></li>
+      <li><a href="#hobi">Hobi</a></li>
+      <li><a href="#video">Video</a></li>
+    </ul><span class="nav-note">CREATOR · INDONESIA</span>
+  </nav>
+
+  <!-- HOME -->
+  <header id="home">
+    <aside class="side">
+      <div class="t"><img class="pic" id="sImg" alt="">
+        <h3 id="sTitle"></h3>
+        <p id="sDesc"></p>
+      </div>
+      <div class="t">
+        <h3>Tentang saya</h3>
+        <p>Ivan kurniawan seorang blogger dan student yang memiliki semangat yang membara.</p>
+      </div>
+      <button class="next" id="nextBtn">NEXT MATERI</button>
+    </aside>
+    <div class="stage">
+      <img class="hero" id="hero" alt="">
+      <div class="count"><span id="cNow">01</span><small>/<span id="cAll">03</span></small></div>
+    </div>
+    <aside class="feature">
+      <p class="eyebrow">Creator profile · 2026</p>
+      <h1>Ivan<br>STUDENT</h1>
+      <p class="role">Blogger &amp; Creator</p>
+      <p class="desc">Berbagi materi belajar web, ide kreatif, dan hal-hal yang sedang saya pelajari.</p>
+      <div class="meta"><span>Indonesia</span><span>3 Materi</span><span>Web &amp; Kreativitas</span></div>
+      <div class="cta"><a class="btn" href="#materi">JELAJAHI MATERI</a><a class="btn line" href="#video">LIHAT
+          VIDEO</a></div>
+    </aside>
+  </header>
+
+  <!-- API -->
+  <section class="s" id="api">
+    <h2 class="h">Jadwal &amp; Cuaca</h2>
+    <p class="sub">Data tampil otomatis setelah kode API diisi di bagian PENGATURAN pada file HTML.</p>
+    <div class="two">
+      <article class="box"><img id="imgK" alt="">
+        <div class="in">
+          <h2>Jadwal Sholat</h2>
+          <div id="kOut"></div>
+        </div>
+      </article>
+      <article class="box"><img id="imgW" alt="">
+        <div class="in">
+          <h2>Cuaca</h2>
+          <div id="wOut"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- MATERI -->
+  <section class="s" id="materi">
+    <h2 class="h">Materi</h2>
+    <p class="sub">Pilih judul untuk membuka materi, gambar, dan tautan referensi.</p>
+    <div class="materi-tools">
+      <input id="materiSearch" type="search" placeholder="Cari materi atau mata pelajaran..." aria-label="Cari materi">
+      <div class="kelas-filters" role="group" aria-label="Filter kelas">
+        <button type="button" data-kelas="all" aria-pressed="true">Semua</button>
+        <button type="button" data-kelas="10" aria-pressed="false">Kelas 10</button>
+        <button type="button" data-kelas="11" aria-pressed="false">Kelas 11</button>
+        <button type="button" data-kelas="12" aria-pressed="false">Kelas 12</button>
+      </div>
+    </div>
+    <p class="materi-count" id="materiCount" aria-live="polite"></p>
+    <div class="grid" id="list"></div>
+  </section>
+
+  <!-- HOBI -->
+  <section class="s" id="hobi">
+    <h2 class="h">Hobi</h2>
+    <p class="sub">Hal-hal yang saya sukai di luar layar.</p>
+    <div class="hobi" id="hobiList"></div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="s" id="video">
+    <h2 class="h">Video</h2>
+    <p class="sub" id="ySub">Video pilihan dari YouTube.</p>
+    <div id="yOut"></div>
+  </section>
+
+  <footer>
+    <div><b>IVAN KURNIAWAN</b><br>Dibuat dengan semangat yang membara.</div>
+    <div>Home · API · Materi · Hobi · Video<br>© 2026 Ivan Kurniawan</div>
+  </footer>
+
+  <dialog id="dlg"><button class="x" id="dx" aria-label="Tutup">✕</button>
+    <div id="dBody"></div>
+  </dialog>
+
+  <script>
+    /* ================= PENGATURAN: isi di sini ================= */
+    const NAMA = "IVAN KURNIAWAN";
+    const KOTA = "Karanganyar"; // kota untuk sholat & cuaca
+
+    const API_SHOLAT =
+    "https://api.aladhan.com/v1/timingsByCity?city=Karanganyar&country=Indonesia&method=20"; // tempel kode API jadwal sholat
+    const LAT = -7.6170;
+    const LON = 110.9852;
+    const API_CUACA =
+      `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code&timezone=Asia%2FJakarta`;
+    const YOUTUBE_VIDEO_ID = "Hh2kZ5oX5Wk";
+
+    // Gambar: boleh diganti dengan link gambarmu sendiri
+    const IMG_HERO = ["image/foto.jpeg", "image/foto2.jpg", "image/foto3.jpeg"];
+    const IMG_SHOLAT = "https://picsum.photos/seed/masjid/900/600?grayscale";
+    const IMG_CUACA = "https://picsum.photos/seed/langit/900/600?grayscale";
+
+    const MATERI = [{
+        k: 10,
+        s: "PKN",
+        t: "Pancasila sebagai Dasar Negara",
+        img: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1000&q=80",
+        x: `Pancasila adalah dasar negara sekaligus pandangan hidup bangsa Indonesia. Sebagai dasar negara, Pancasila menjadi sumber dari segala sumber hukum, artinya semua peraturan tidak boleh bertentangan dengan nilai-nilai Pancasila. Sebagai pandangan hidup, Pancasila menjadi pedoman perilaku sehari-hari.
+
+Lima sila:
+1. Ketuhanan Yang Maha Esa: toleransi beragama, tidak memaksa keyakinan.
+2. Kemanusiaan yang Adil dan Beradab: menghargai HAM, tidak diskriminasi.
+3. Persatuan Indonesia: nasionalisme, cinta tanah air, menjaga kerukunan.
+4. Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan: musyawarah, pemilu, tidak memaksakan kehendak.
+5. Keadilan Sosial bagi Seluruh Rakyat Indonesia: pemerataan, gotong royong, tidak korupsi.
+
+Contoh penerapan: beribadah sesuai agama, menolong korban bencana, mengikuti pemilu, membayar pajak, dan menjaga fasilitas umum. Tantangan zaman: radikalisme, individualisme, hoaks, dan lunturnya gotong royong. Tips: hafalkan makna tiap sila, lalu kaitkan dengan contoh nyata.`
+      },
+      {
+        k: 10,
+        s: "Sejarah",
+        t: "Berpikir Kronologis dan Diakronis",
+        img: "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1000&q=80",
+        x: `Kronologis berarti menyusun peristiwa berdasarkan urutan waktu, dari yang paling awal ke yang paling akhir. Diakronis berarti melihat peristiwa secara memanjang dalam waktu, sehingga terlihat perubahan dan perkembangan dari masa ke masa. Kebalikannya adalah sinkronis, yaitu melihat peristiwa pada satu waktu tertentu secara meluas.
+
+Contoh kronologi Proklamasi: 6 Agustus 1945 Hiroshima dibom, 9 Agustus Nagasaki dibom, 15 Agustus Jepang menyerah, 16 Agustus Rengasdengklok, 17 Agustus Proklamasi. Contoh diakronis: perkembangan organisasi pergerakan nasional dari Budi Utomo 1908 sampai proklamasi 1945.
+
+Poin penting: periodisasi, kausalitas, perubahan, keberlanjutan. Tips: buat garis waktu, lalu tulis sebab-akibat tiap peristiwa.`
+      },
+      {
+        k: 10,
+        s: "Matematika",
+        t: "Persamaan dan Pertidaksamaan Linear",
+        img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1000&q=80",
+        x: `Persamaan linear satu variabel bentuk umumnya ax + b = c. Penyelesaiannya dengan melakukan operasi yang sama pada kedua ruas. Contoh: 3x - 5 = 10, maka 3x = 15, sehingga x = 5.
+
+Pertidaksamaan linear bentuknya ax + b < c, >, ≤, ≥. Aturan penting: jika dikali atau dibagi bilangan negatif, tanda pertidaksamaan berbalik. Contoh: -2x + 1 < 7, maka -2x < 6, sehingga x > -3.
+
+Himpunan penyelesaian bisa digambar di garis bilangan. Tips: selalu cek dengan memasukkan nilai x ke soal asli. Kesalahan umum: lupa membalik tanda saat membagi negatif.`
+      },
+      {
+        k: 10,
+        s: "Bahasa Indonesia",
+        t: "Teks Laporan Hasil Observasi",
+        img: "https://images.unsplash.com/photo-1455390582262-044c7141e0d1?auto=format&fit=crop&w=1000&q=80",
+        x: `Teks laporan hasil observasi menyajikan fakta berdasarkan pengamatan langsung dan sistematis. Ciri: objektif, faktual, menggunakan istilah teknis, dan tidak memihak.
+
+Struktur:
+1. Pernyataan umum/definisi: menjelaskan objek secara umum.
+2. Deskripsi bagian: merinci bagian-bagian objek.
+3. Deskripsi manfaat: menjelaskan fungsi atau manfaat.
+
+Contoh objek: tumbuhan lidah buaya. Definisi: lidah buaya adalah tanaman sukulen. Deskripsi bagian: daun tebal, berduri halus, mengandung gel. Manfaat: obat luka, kosmetik, minuman.
+
+Kaidah: gunakan kalimat definisi, kata kerja relasional, dan istilah ilmiah. Tips: bedakan laporan observasi dari teks deskripsi. Observasi harus berdasarkan data, bukan opini.`
+      },
+      {
+        k: 10,
+        s: "Bahasa Inggris",
+        t: "Introducing Yourself",
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80",
+        x: `Materi ini melatih memperkenalkan diri secara lisan dan tulis. Unsur yang biasanya diperkenalkan: nama, usia, asal, sekolah, alamat, hobi, minat, dan tujuan.
+
+Contoh formal:
+- Good morning. My name is Ayu.
+- I come from Bandung.
+- I am a student of SMK Negeri 1.
+- I am interested in coding and design.
+
+Contoh informal:
+- Hi, I'm Ayu.
+- I'm from Bandung.
+- I like playing badminton.
+
+Grammar pendukung: to be (am/is/are), simple present, possessive adjective (my, your, his, her). Tips: latih percakapan pendek, jangan hanya hafal teks. Perhatikan intonasi dan kontak mata.`
+      },
+      {
+        k: 10,
+        s: "Olahraga",
+        t: "Kebugaran Jasmani",
+        img: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1000&q=80",
+        x: `Kebugaran jasmani adalah kemampuan tubuh melakukan aktivitas tanpa merasa lelah berlebihan. Komponennya: daya tahan jantung-paru, kekuatan otot, kelenturan, kecepatan, kelincahan, keseimbangan, dan komposisi tubuh.
+
+Latihan: lari, senam, push-up, sit-up, plank, stretching. Prinsip FITT: Frequency, Intensity, Time, Type. Selalu lakukan pemanasan sebelum latihan dan pendinginan setelahnya.
+
+Contoh program: pemanasan 5-10 menit, inti 20-30 menit, pendinginan 5 menit. Tips: tingkatkan beban bertahap, minum cukup, istirahat cukup, dan sesuaikan dengan kondisi tubuh.`
+      },
+      {
+        k: 10,
+        s: "Coding · Python",
+        t: "Python: Variabel dan Tipe Data",
+        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
+        x: `Variabel adalah wadah untuk menyimpan data. Di Python, variabel tidak perlu dideklarasikan tipe datanya. Contoh:
+nama = "Ayu"
+umur = 17
+tinggi = 160.5
+aktif = True
+
+Tipe data dasar: str untuk teks, int untuk bilangan bulat, float untuk desimal, bool untuk True/False.
+
+input() menghasilkan string. Jika ingin angka, konversi:
+umur = int(input("Umur: "))
+print("Halo", nama, "umur saya", umur)
+
+Tips: gunakan nama variabel yang jelas, hindari spasi, dan ingat bahwa Python bersifat dynamic typing.`
+      },
+      {
+        k: 10,
+        s: "PIPAS",
+        t: "Kesehatan Diri dan Lingkungan",
+        img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80",
+        x: `PIPAS/IPAS menghubungkan ilmu alam dan sosial. Fokus materi ini: kesehatan diri dan lingkungan. Kesehatan diri meliputi kebersihan badan, gizi seimbang, olahraga, tidur cukup, kesehatan mental, dan pencegahan penyakit. Lingkungan meliputi sanitasi, pengelolaan sampah, kualitas air, pencemaran, dan pelestarian alam.
+
+Contoh: mencuci tangan, membuang sampah pada tempatnya, mengurangi plastik, menanam pohon, dan menghemat air. Hubungan sosial: kebiasaan warga memengaruhi kesehatan masyarakat. Tips: buat proyek kecil, misalnya observasi sampah di sekolah dan usulan solusinya.`
+      },
+      {
+        k: 11,
+        s: "PKN",
+        t: "Hak dan Kewajiban Warga Negara",
+        img: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1000&q=80",
+        x: `Hak adalah sesuatu yang layak diterima warga negara. Kewajiban adalah sesuatu yang harus dilakukan. Keduanya harus seimbang.
+
+Hak warga negara diatur dalam UUD 1945, misalnya:
+- hak atas pendidikan (Pasal 31),
+- hak pekerjaan dan penghidupan layak (Pasal 27),
+- hak beragama (Pasal 29),
+- hak atas perlindungan HAM (Pasal 28A-28J).
+
+Kewajiban:
+- menaati hukum,
+- membayar pajak,
+- bela negara,
+- menghormati hak orang lain,
+- menjaga lingkungan.
+
+Contoh: siswa berhak mendapat pembelajaran, tetapi wajib mengikuti aturan sekolah. Tips: pahami pasal penting, lalu kaitkan dengan kasus sehari-hari.`
+      },
+      {
+        k: 11,
+        s: "Sejarah",
+        t: "Kolonialisme dan Perlawanan Bangsa",
+        img: "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1000&q=80",
+        x: `Kolonialisme adalah penguasaan suatu wilayah oleh bangsa lain untuk memperluas kekuasaan dan ekonomi. Di Indonesia: Portugis, Spanyol, VOC, lalu Hindia Belanda. VOC didirikan 1602 dan menerapkan monopoli dagang.
+
+Perlawanan bangsa:
+- Sultan Baabullah di Maluku,
+- Sultan Agung vs VOC,
+- Pattimura 1817,
+- Diponegoro 1825-1830,
+- Imam Bonjol 1821-1837,
+- Perang Aceh 1873-1904,
+- Sisingamangaraja XII,
+- perlawanan Bali dan Sulawesi.
+
+Strategi perlawanan: fisik, diplomasi, dan organisasi modern. Setelah Politik Etis 1901, muncul Budi Utomo 1908, Sarekat Islam, Muhammadiyah, Indische Partij, dan PNI. Dampak kolonialisme: eksploitasi ekonomi, kerja rodi, tanam paksa, tetapi juga munculnya pendidikan dan kesadaran nasional. Tips: bandingkan latar belakang, strategi, dan hasil perlawanan.`
+      },
+      {
+        k: 11,
+        s: "Matematika",
+        t: "Matriks dan Operasi Dasar",
+        img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1000&q=80",
+        x: `Matriks adalah susunan bilangan dalam baris dan kolom. Ordo matriks ditulis m × n (m baris, n kolom). Contoh:
+A = [1 2]
+    [3 4]
+
+Operasi dasar:
+- Penjumlahan/pengurangan: ordo harus sama.
+- Perkalian skalar: semua elemen dikali bilangan.
+- Perkalian matriks: jumlah kolom matriks pertama = jumlah baris matriks kedua.
+
+Contoh perkalian:
+A = [[1,2],[3,4]], B = [[5,6],[7,8]]
+A × B = [[19,22],[43,50]]
+
+Tips: teliti saat memasangkan baris dan kolom. Untuk 2×2, determinan = ad - bc.`
+      },
+      {
+        k: 11,
+        s: "Bahasa Indonesia",
+        t: "Teks Argumentasi",
+        img: "https://images.unsplash.com/photo-1455390582262-044c7141e0d1?auto=format&fit=crop&w=1000&q=80",
+        x: `Teks argumentasi bertujuan meyakinkan pembaca bahwa pendapat penulis benar. Struktur:
+1. Pendapat/tesis
+2. Alasan
+3. Bukti/data
+4. Simpulan
+
+Ciri: ada fakta dan opini, tetapi opini harus didukung data. Bahasa: konjungsi kausalitas (karena, sebab, akibatnya), kata kerja mental (berpendapat, menyimpulkan), dan bahasa baku.
+
+Contoh topik: "Sekolah harus membatasi penggunaan HP saat jam belajar." Tesis: membatasi HP meningkatkan fokus. Alasan: mengurangi distraksi. Bukti: hasil penelitian. Simpulan: aturan perlu diterapkan.
+
+Tips: bedakan fakta dan opini, hindari generalisasi berlebihan, dan susun argumen dari yang terkuat.`
+      },
+      {
+        k: 11,
+        s: "Bahasa Inggris",
+        t: "Offering and Suggesting",
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80",
+        x: `Offering = menawarkan bantuan atau sesuatu.
+- Would you like me to help you?
+- Can I get you something?
+- Shall I open the window?
+
+Suggesting = memberi saran.
+- You should try this.
+- Why don't we study together?
+- How about going to the library?
+- Let's finish it today.
+
+Respons menerima: "Yes, please." "That's a good idea." Menolak: "No, thanks." "I'd love to, but I can't." Tips: perhatikan situasi formal/informal dan gunakan nada sopan.`
+      },
+      {
+        k: 11,
+        s: "Olahraga",
+        t: "Strategi Permainan Tim",
+        img: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1000&q=80",
+        x: `Strategi tim mencakup formasi, pembagian peran, komunikasi, dan kerja sama. Tujuan: menyerang dan bertahan secara efektif. Contoh:
+- Sepak bola: formasi 4-4-2, pressing, counter attack.
+- Basket: man-to-man, zone defense, fast break.
+- Voli: pola 4-2, 5-1, servis dan blok.
+
+Poin penting: disiplin posisi, komunikasi, membaca lawan, dan sportivitas. Tips: latih variasi strategi, evaluasi pertandingan, dan jaga kondisi fisik.`
+      },
+      {
+        k: 11,
+        s: "Coding · PHP",
+        t: "PHP: Variabel dan Kondisi",
+        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
+        x: `Variabel PHP diawali $. Contoh:
+$nama = "Ayu";
+$umur = 17;
+echo "Halo, $nama";
+
+Kondisi:
+if ($umur >= 17) {
+    echo "Dewasa";
+} else {
+    echo "Belum dewasa";
+}
+
+Operator: ==, ===, !=, >, <, >=, <=, &&, ||, !. Bisa juga elseif dan switch. Tips: gunakan === untuk membandingkan nilai dan tipe, dan pastikan kurung kurawal tidak tertukar.`
+      },
+      {
+        k: 12,
+        s: "PKN",
+        t: "Demokrasi dan Partisipasi Warga",
+        img: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1000&q=80",
+        x: `Demokrasi berarti kedaulatan di tangan rakyat. Indonesia menganut Demokrasi Pancasila, yang menekankan musyawarah, kekeluargaan, dan gotong royong. Prinsip: kebebasan, kesetaraan, mayoritas menghormati minoritas, dan akuntabilitas.
+
+Partisipasi warga:
+- memilih dalam pemilu,
+- menyampaikan aspirasi secara santun,
+- mengawasi kebijakan,
+- aktif di organisasi masyarakat,
+- membayar pajak,
+- menaati hukum.
+
+Pemilu di Indonesia asasnya: langsung, umum, bebas, rahasia, jujur, adil. Tips: pahami perbedaan demokrasi langsung, tidak langsung, dan perwakilan.`
+      },
+      {
+        k: 12,
+        s: "Sejarah",
+        t: "Mempertahankan Kemerdekaan",
+        img: "https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1000&q=80",
+        x: `Setelah 17 Agustus 1945, kemerdekaan harus dipertahankan melalui perjuangan fisik dan diplomasi.
+
+Perjuangan fisik:
+- Pertempuran Surabaya 10 November 1945,
+- Bandung Lautan Api 1946,
+- Palagan Ambarawa 1945,
+- Medan Area 1945,
+- Serangan Umum 1 Maret 1949.
+
+Diplomasi:
+- Perjanjian Linggarjati 1946,
+- Renville 1948,
+- Roem-Royen 1949,
+- Konferensi Meja Bundar 1949.
+
+Tokoh: Soekarno, Hatta, Jenderal Sudirman, Sri Sultan Hamengku Buwono IX. Tips: buat tabel peristiwa, tokoh, dan dampaknya.`
+      },
+      {
+        k: 12,
+        s: "Matematika",
+        t: "Statistika dan Ukuran Pemusatan",
+        img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1000&q=80",
+        x: `Ukuran pemusatan:
+- Mean = rata-rata = jumlah data ÷ banyak data.
+- Median = nilai tengah setelah data diurutkan.
+- Modus = nilai yang paling sering muncul.
+
+Contoh data: 4, 5, 5, 6, 10.
+- Mean = 30 ÷ 5 = 6.
+- Median = 5.
+- Modus = 5.
+
+Untuk data berkelompok, gunakan titik tengah dan frekuensi. Pilih ukuran sesuai data: mean mudah tetapi terpengaruh outlier; median lebih tahan outlier; modus untuk data kategorik. Tips: urutkan data dulu sebelum mencari median.`
+      },
+      {
+        k: 12,
+        s: "Bahasa Indonesia",
+        t: "Menulis Esai Argumentatif",
+        img: "https://images.unsplash.com/photo-1455390582262-044c7141e0d1?auto=format&fit=crop&w=1000&q=80",
+        x: `Esai argumentatif berisi tesis, argumen, bukti, dan penegasan ulang. Tujuan: meyakinkan pembaca. Langkah:
+1. Pilih topik.
+2. Tentukan posisi.
+3. Susun kerangka: tesis, 2-3 argumen, simpulan.
+4. Kumpulkan data/fakta.
+5. Tulis dengan bahasa baku dan logis.
+
+Contoh tesis: "Pendidikan karakter penting di sekolah." Argumen: membentuk disiplin, mengurangi bullying, meningkatkan tanggung jawab. Bukti: data kasus dan pendapat ahli. Penegasan: pendidikan karakter harus diterapkan sejak dini.
+
+Tips: setiap paragraf satu gagasan utama, gunakan konjungsi, dan hindari plagiarisme.`
+      },
+      {
+        k: 12,
+        s: "Bahasa Inggris",
+        t: "Job Application Letter",
+        img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80",
+        x: `Surat lamaran kerja memuat:
+- data diri,
+- tanggal,
+- penerima,
+- salam,
+- posisi yang dilamar,
+- kualifikasi,
+- pengalaman relevan,
+- penutup,
+- tanda tangan.
+
+Contoh pembuka:
+"I am writing to apply for the position of Graphic Designer at your company."
+
+Contoh penutup:
+"I would appreciate the opportunity to discuss my application further. Thank you for your consideration."
+
+Gunakan bahasa formal, singkat, dan fokus pada relevansi. Lampirkan CV dan portofolio. Tips: sesuaikan surat dengan perusahaan, jangan copy-paste.`
+      },
+      {
+        k: 12,
+        s: "Olahraga",
+        t: "Perencanaan Latihan Kebugaran",
+        img: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1000&q=80",
+        x: `Perencanaan latihan menggunakan prinsip FITT:
+- Frequency: berapa kali per minggu.
+- Intensity: ringan, sedang, berat.
+- Time: durasi.
+- Type: jenis latihan.
+
+Program lengkap: pemanasan, latihan inti, pendinginan. Variasi: kardio, kekuatan, kelenturan, keseimbangan. Contoh jadwal:
+- Senin: kardio 30 menit.
+- Rabu: kekuatan otot.
+- Jumat: kelenturan dan mobilitas.
+- Minggu: istirahat aktif.
+
+Prinsip: progressive overload, spesifisitas, reversibilitas, dan istirahat. Tips: catat perkembangan, cukup tidur, dan jaga gizi.`
+      },
+      {
+        k: 12,
+        s: "Coding · PHP",
+        t: "PHP: Form dan Validasi Input",
+        img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80",
+        x: `Form HTML mengirim data ke server melalui GET atau POST.
+<form method="post" action="proses.php">
+  <input type="text" name="nama">
+  <input type="email" name="email">
+  <button type="submit">Kirim</button>
+</form>
+
+Di PHP:
+$nama = trim($_POST['nama'] ?? '');
+$email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+
+if ($nama === '' || !$email) {
+    echo "Data tidak valid";
+} else {
+    echo "Halo, " . htmlspecialchars($nama);
+}
+
+Validasi penting: cek kosong, format email, panjang teks, dan karakter berbahaya. Gunakan htmlspecialchars() untuk mencegah XSS. Untuk database, gunakan prepared statement. Tips: jangan pernah percaya input pengguna, validasi di server, dan gunakan HTTPS.`
+      }
+    ];
+
+    // Hobi: ganti judul (t), ringkasan (r), penjelasan (x), dan gambar (img)
+    const HOBI = [{
+        t: "Coding",
+        r: "Membangun web kecil untuk belajar.",
+        x: "Saya suka mencoba HTML, CSS, dan JavaScript, lalu membagikan hasilnya sebagai materi di blog ini.",
+        img: "/image/coding.jpg"
+      },
+      {
+        t: "Gaming",
+        r: "Bermain game dan mengeksplorasi dunia virtual.",
+        x: "Mencoba berbagai genre game, dari strategi hingga RPG, untuk hiburan dan inspirasi konten.",
+        img: "/image/gaming.jpg"
+      },
+      {
+        t: "Baca Buku & Novel",
+        r: "Membaca buku dan novel sejarah.",
+        x: "Menggunakan waktu luang untuk membaca buku sejarah, novel, dan cerita pendek.",
+        img: "/image/baca.jpg"
+      },
+      {
+        t: "Olaharaga",
+        r: "Melakukan latihan olahraga untuk meningkatkan kesehatan.",
+        x: "Melakukan latihan olahraga seperti latihan kardio, kekuatan, dan kelenturan untuk meningkatkan kesehatan fisik.",
+        img: "/image/olahraga.jpg"
+      }
+    ];
+    /* =========================================================== */
+
+    const $ = s => document.querySelector(s),
+      $$ = s => [...document.querySelectorAll(s)];
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;"
+    } [c]));
+    const kosong = (nama) =>
+      `<div class="msg">Kode API belum diisi. Buka file HTML, cari <code>${nama}</code> di bagian PENGATURAN, lalu tempel kode API-mu di antara tanda kutip.</div>`;
+    const gagal = m => `<div class="msg">Gagal memuat: ${esc(m)}. Periksa kode API dan nama kota.</div>`;
+    const deskripsiCuaca = kode => ({
+      0: "Cerah",
+      1: "Cerah berawan",
+      2: "Berawan sebagian",
+      3: "Berawan",
+      45: "Berkabut",
+      48: "Berkabut",
+      51: "Gerimis ringan",
+      53: "Gerimis",
+      55: "Gerimis lebat",
+      56: "Gerimis beku",
+      57: "Gerimis beku lebat",
+      61: "Hujan ringan",
+      63: "Hujan",
+      65: "Hujan lebat",
+      66: "Hujan beku",
+      67: "Hujan beku lebat",
+      71: "Salju ringan",
+      73: "Salju",
+      75: "Salju lebat",
+      77: "Butiran salju",
+      80: "Hujan lokal",
+      81: "Hujan lokal",
+      82: "Hujan lokal lebat",
+      85: "Salju lokal",
+      86: "Salju lokal lebat",
+      95: "Badai petir",
+      96: "Badai petir dan hujan es",
+      99: "Badai petir dan hujan es"
+    } [kode] || "Cuaca berubah-ubah");
+
+    const hero = $('#hero');
+    let heroIndex = 0;
+    hero.src = IMG_HERO[heroIndex];
+    hero.alt = 'Foto Ivan';
+    const gantiFoto = () => {
+      heroIndex = (heroIndex + 1) % IMG_HERO.length;
+      hero.classList.add('changing');
+      setTimeout(() => {
+        hero.onload = () => hero.classList.remove('changing');
+        hero.onerror = () => hero.classList.remove('changing');
+        hero.src = IMG_HERO[heroIndex];
+      }, 350);
+    };
+    setInterval(gantiFoto, 5000);
+    $('#imgK').src = IMG_SHOLAT;
+    $('#imgW').src = IMG_CUACA;
+
+    /* Home */
+    let cur = 0;
+
+    function slide() {
+      const m = MATERI[cur];
+      const ringkasan = m.x.length > 80 ? `${m.x.slice(0, 80).replace(/\s+\S*$/, '')}...` : m.x;
+      $('#sTitle').textContent = m.t;
+      $('#sDesc').textContent = ringkasan;
+      $('#sImg').src = m.img;
+      $('#cNow').textContent = String(cur + 1).padStart(2, '0');
+      $('#cAll').textContent = String(MATERI.length).padStart(2, '0')
+    }
+    $('#nextBtn').onclick = () => {
+      cur = (cur + 1) % MATERI.length;
+      slide();
+      gantiFoto()
+    };
+    slide();
+
+    /* Materi + modal */
+    const dlg = $('#dlg'),
+      tutup = () => {
+        dlg.close();
+        $('#dBody').innerHTML = ''
+      };
+    $('#dx').onclick = tutup;
+    dlg.onclick = e => {
+      if (e.target === dlg) tutup()
+    };
+    let kelasAktif = 'all';
+
+    function renderMateri() {
+      const q = $('#materiSearch').value.trim().toLocaleLowerCase('id');
+      const hasil = MATERI.map((m, i) => ({
+        ...m,
+        i
+      })).filter(m =>
+        (kelasAktif === 'all' || String(m.k) === kelasAktif) && `${m.t} ${m.s} kelas ${m.k}`.toLocaleLowerCase('id')
+        .includes(q));
+      $('#materiCount').textContent = `${hasil.length} materi${kelasAktif==='all'?'':' · Kelas '+kelasAktif}`;
+      $('#list').innerHTML = hasil.length ? hasil.map(m =>
+        `<button class="materi-card" data-i="${m.i}"><span class="materi-card-top"><span class="grade">KELAS ${m.k}</span><span class="materi-subject">${esc(m.s)}</span></span><h3>${esc(m.t)}</h3><span class="materi-card-bottom"><span>BUKA MATERI</span><span class="arrow" aria-hidden="true">↗</span></span></button>`
+        ).join('') : '<p class="materi-empty">Materi tidak ditemukan. Coba kata kunci lain.</p>';
+      $$('.materi-card').forEach(button => button.onclick = () => {
+        const m = MATERI[button.dataset.i],
+          url = `https://www.google.com/search?q=${encodeURIComponent(`materi ${m.t} ${m.s} kelas ${m.k}`)}`;
+        $('#dBody').innerHTML =
+          `<img class="mh" src="${esc(m.img)}" alt="Ilustrasi ${esc(m.t)}"><div class="mb"><small>Kelas ${m.k} · ${esc(m.s)}</small><h2>${esc(m.t)}</h2><p>${esc(m.x)}</p><a class="materi-modal-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Cari referensi di Google</a></div>`;
+        dlg.showModal();
+      });
+    }
+    $('#materiSearch').addEventListener('input', renderMateri);
+    $$('.kelas-filters button').forEach(button => button.addEventListener('click', () => {
+      kelasAktif = button.dataset.kelas;
+      $$('.kelas-filters button').forEach(filter => filter.setAttribute('aria-pressed', String(filter ===
+        button)));
+      renderMateri();
+    }));
+    renderMateri();
+
+    /* Hobi + modal */
+    $('#hobiList').innerHTML = HOBI.map((h, i) =>
+      `<button class="hobi-item" data-h="${i}"><img src="${esc(h.img)}" alt=""><span class="no">${String(i+1).padStart(2,'0')}</span><span class="cap"><h3>${esc(h.t)}</h3><p>${esc(h.r)}</p><span class="more">LIHAT</span></span></button>`
+      ).join('');
+    $$('.hobi-item').forEach(b => b.onclick = () => {
+      const h = HOBI[b.dataset.h];
+      $('#dBody').innerHTML =
+        `<img class="mh" src="${esc(h.img)}" alt="${esc(h.t)}"><div class="mb"><h2>${esc(h.t)}</h2><p>${esc(h.x)}</p><small>Hobi ke-${+b.dataset.h+1} · ${esc(NAMA)}</small></div>`;
+      dlg.showModal()
+    });
+
+    /* Sholat */
+    (async () => {
+      const o = $('#kOut');
+      if (!API_SHOLAT) {
+        o.innerHTML = kosong('API_SHOLAT');
+        return
+      }
+      o.innerHTML = '<div class="msg">Memuat…</div>';
+      try {
+        const r = await fetch(
+          `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(KOTA)}&country=Indonesia&method=20&key=${encodeURIComponent(API_SHOLAT)}`
+          );
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.data || j.status || r.status);
+        const t = j.data.timings,
+          n = {
+            Fajr: 'Subuh',
+            Dhuhr: 'Dzuhur',
+            Asr: 'Ashar',
+            Maghrib: 'Maghrib',
+            Isha: 'Isya'
+          };
+        o.innerHTML =
+          `<div class="msg">${esc(KOTA)} · ${esc(j.data.date.readable)}</div><div class="next-time" aria-live="polite"><span id="nextLabel"></span><b id="nextClock">--:--:--</b></div><div class="times">${Object.keys(n).map(k=>`<div>${n[k]}<b>${esc(t[k])}</b></div>`).join('')}</div>`;
+        const prayers = Object.keys(n).map(k => ({
+          name: n[k],
+          time: String(t[k]).split(' ')[0]
+        }));
+        const updateCountdown = () => {
+          const now = new Date();
+          let upcoming = prayers.map(p => {
+            const [hour, minute] = p.time.split(':').map(Number), target = new Date(now);
+            target.setHours(hour, minute, 0, 0);
+            return {
+              ...p,
+              target
+            }
+          }).find(p => p.target > now);
+          if (!upcoming) {
+            const p = prayers[0],
+              [hour, minute] = p.time.split(':').map(Number),
+              target = new Date(now);
+            target.setDate(target.getDate() + 1);
+            target.setHours(hour, minute, 0, 0);
+            upcoming = {
+              ...p,
+              target
+            }
+          }
+          const seconds = Math.max(0, Math.floor((upcoming.target - now) / 1000)),
+            hours = Math.floor(seconds / 3600),
+            minutes = Math.floor(seconds % 3600 / 60),
+            remaining = seconds % 60;
+          $('#nextLabel').textContent = `Menuju ${upcoming.name} · ${upcoming.time}`;
+          $('#nextClock').textContent =
+            `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(remaining).padStart(2,'0')}`
+        };
+        updateCountdown();
+        setInterval(updateCountdown, 1000)
+      } catch (e) {
+        o.innerHTML = gagal(e.message)
+      }
+    })();
+
+    /* Cuaca */
+    (async () => {
+      const o = $('#wOut');
+      if (!API_CUACA) {
+        o.innerHTML = kosong('API_CUACA');
+        return
+      }
+      o.innerHTML = '<div class="msg">Memuat…</div>';
+      try {
+        const r = await fetch(API_CUACA);
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.reason || r.status);
+        if (!j.current) throw new Error('Data cuaca tidak tersedia');
+        const c = j.current;
+        o.innerHTML =
+          `<div class="big">${Math.round(c.temperature_2m)}°C</div><p style="margin:8px 0"><b>${esc(KOTA)}</b> · ${deskripsiCuaca(c.weather_code)}</p>
+  <div class="times"><div>Terasa<b>${Math.round(c.apparent_temperature)}°</b></div><div>Lembap<b>${c.relative_humidity_2m}%</b></div><div>Angin<b>${c.wind_speed_10m}</b>km/j</div></div>`
+      } catch (e) {
+        o.innerHTML = gagal(e.message)
+      }
+    })();
+
+    /* Video YouTube */
+    if (/^[\w-]{11}$/.test(YOUTUBE_VIDEO_ID)) {
+      $('#yOut').innerHTML =
+        `<a class="video-preview" href="https://youtu.be/${YOUTUBE_VIDEO_ID}" target="_blank" rel="noopener noreferrer" aria-label="Tonton video di YouTube"><img src="https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/hqdefault.jpg" alt="Thumbnail video YouTube"><span class="video-play" aria-hidden="true"></span><span class="video-caption">TONTON DI YOUTUBE</span></a>`;
+    } else {
+      $('#yOut').innerHTML = '<div class="msg">ID video YouTube tidak valid.</div>';
+    }
+
+    /* Menu aktif saat scroll */
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) $$('.vnav a').forEach(a => a.classList.toggle('act', a.getAttribute('href') === '#' +
+        e.target.id))
+    }), {
+      threshold: .4
+    });
+    $$('header[id],section[id]').forEach(s => io.observe(s));
+  </script>
+</body>
+
+</html>
